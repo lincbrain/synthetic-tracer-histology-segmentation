@@ -1,0 +1,19 @@
+# Core training / segmentation stack
+torch
+pytorch_lightning
+lightning
+transformers
+wandb
+albumentations
+numpy
+scipy
+scikit-image
+Pillow
+zarr
+torchmetrics
+
+# Evaluation (evaluate.py, visualize_predictions.py)
+pandas
+matplotlib
+
+# NOTE: Syntract (data synthesis) is NOT pip-installable as-is — see README.md
