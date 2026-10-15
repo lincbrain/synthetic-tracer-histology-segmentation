@@ -198,10 +198,10 @@ def main(args):
 
     white_mask = None if (args.white_mask is None or args.white_mask.lower() == "none") else args.white_mask
     patch_size = [512, 1, 512]  # Generate synthetic patches at 512x512, resized to real_patch_size before mixing
-    # Match physical field of view to the real data: real patches are 1024px cropped at
-    # 7.035424 um/px --> 7.204 mm FOV. With patch_size=512,
-    # voxel_size = 7.204 / 512 mm/px gives synthetic patches the same physical FOV.
-    voxel_size = (1024 * 0.007035424) / 512
+    # voxel_size must match the blockface's native resolution (0.05 mm), as used for the paper.
+    # Smaller values (e.g. matching the real-data FOV, (1024 * 0.007035424) / 512 ≈ 0.0141) break
+    # Syntract's patch extraction (whole-brain overview slices with wrong masks).
+    voxel_size = 0.05
 
     datamodule = MixedDataModule(
         real_image_dir=args.real_image_dir,
